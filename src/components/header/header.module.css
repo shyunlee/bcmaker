@@ -1,0 +1,32 @@
+@value makerGreen, makerWhite, makerLightBlack, makerSmokeWhite from '../../common/colors.css';
+
+.header {
+  width:100%;
+  text-align: center;
+  padding:0.5em;
+  background-color:makerGreen;
+  position: relative;
+}
+
+.logo {
+  width: 4em;
+}
+
+.logout_btn {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  padding:0.4em 0.8em;
+  border-radius: 7%;
+  outline:0;
+  border:0;
+  cursor:pointer;
+  background-color: makerLightBlack;
+  color:makerSmokeWhite;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  color: makerWhite;
+  margin:0;
+}
