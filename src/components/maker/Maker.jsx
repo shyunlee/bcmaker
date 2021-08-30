@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import Editor from '../editor/Editor';
 import Footer from '../footer/Footer';
 import Header from '../header/Header';
+import Preview from '../preview/Preview';
 import styles from './maker.module.css';
 
 const Maker = ({authService}) => {
@@ -20,6 +22,10 @@ const Maker = ({authService}) => {
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout}/>
+      <section className={styles.container}>
+        <Editor />
+        <Preview />
+      </section>
       <Footer />
     </section>
   )
