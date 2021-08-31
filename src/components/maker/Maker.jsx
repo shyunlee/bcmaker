@@ -6,8 +6,8 @@ import Header from '../header/Header';
 import Preview from '../preview/Preview';
 import styles from './maker.module.css';
 
-const cardsData = [
-  {
+const cardsData = {
+  1:{
     id: 1,
     name: 'sean1',
     company: 'Google',
@@ -19,7 +19,7 @@ const cardsData = [
     fileURL: null,
     theme: 'colorful'
   },
-  {
+  2:{
     id: 2,
     name: 'sean2',
     company: 'Google',
@@ -31,7 +31,7 @@ const cardsData = [
     fileURL: null,
     theme: 'light'
   },
-  {
+  3:{
     id: 3,
     name: 'sean3',
     company: 'Google',
@@ -43,7 +43,7 @@ const cardsData = [
     fileURL: null,
     theme: 'dark'
   },
-]
+}
 
 const Maker = ({authService}) => {
   const [cards, setCards] = useState(cardsData)
@@ -51,6 +51,22 @@ const Maker = ({authService}) => {
 
   const onLogout = () => {
     authService.logout()
+  }
+
+  const addOrUpdateCard = (card) => {
+    setCards(cards => {
+      const updated = {...cards}
+      updated[card.id] = card
+      return updated
+    })
+  }
+
+  const deleteCard = (id) => {
+    setCards(cards => {
+      const updated = {...cards}
+      delete updated[id]
+      return updated
+    })
   }
 
   useEffect(() => {
@@ -63,7 +79,7 @@ const Maker = ({authService}) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout}/>
       <section className={styles.container}>
-        <Editor cards={cards}/>
+        <Editor cards={cards} deleteCard={deleteCard} addOrUpdateCard={addOrUpdateCard}/>
         <Preview cards={cards}/>
       </section>
       <Footer />

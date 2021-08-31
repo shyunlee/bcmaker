@@ -1,7 +1,7 @@
 @value makerGreen from '../../common/colors.css';
 
 .preview {
-  flex-basis: 45%;
+  flex-basis: 50%;
 }
 
 .title {
@@ -12,7 +12,7 @@
 }
 
 .card_list {
-  padding:0.5em 2em;
+  padding:0.5em 3em;
   display:flex;
   flex-direction: column;
   align-items: center;
