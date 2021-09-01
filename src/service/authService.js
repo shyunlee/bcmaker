@@ -9,6 +9,7 @@ import {
 import fireBaseApp from "./firebase";
 
 class AuthService {
+  
   login(providerName) {
     let authProvider;
     if (providerName === "Google") {
