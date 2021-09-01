@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './button.module.css'
 
-const Button = ({name}) => {
+const Button = memo(({name}) => {
   return (
     <button className={styles.button}>{name}</button>
   )
-}
+})
 
 export default Button;

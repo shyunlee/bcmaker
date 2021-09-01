@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Editor from '../editor/Editor';
-import Footer from '../footer/Footer';
-import Header from '../header/Header';
-import Preview from '../preview/Preview';
-import styles from './maker.module.css';
+import React, { useCallback, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import Editor from "../editor/Editor";
+import Footer from "../footer/Footer";
+import Header from "../header/Header";
+import Preview from "../preview/Preview";
+import styles from "./maker.module.css";
 
 // const cardsData = {
 //   1:{
@@ -45,60 +45,65 @@ import styles from './maker.module.css';
 //   },
 // }
 
-const Maker = ({FileInput, authService, cardRepository}) => {
-  const history = useHistory()
-  const [cards, setCards] = useState({})
-  const [userId, setUserId] = useState(history && history.location.state)
-  
-  const onLogout = () => {
-    authService.logout()
-  }
+const Maker = ({ FileInput, authService, cardRepository }) => {
+  const history = useHistory();
+  const [cards, setCards] = useState({});
+  const [userId, setUserId] = useState(history && history.location.state);
 
-  const addOrUpdateCard = (card) => {
-    setCards(cards => {
-      const updated = {...cards}
-      updated[card.id] = card
-      return updated
-    })
-    cardRepository.saveCard(userId, card)
-  }
+  const onLogout = useCallback(() => {
+    authService.logout();
+  }, [authService]);
 
-  const deleteCard = (id) => {
-    setCards(cards => {
-      const updated = {...cards}
-      delete updated[id]
-      return updated
-    })
-    cardRepository.removeCard(userId, id)
-  }
+  const addOrUpdateCard = useCallback( (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+    cardRepository.saveCard(userId, card);
+  },[cardRepository, userId]);
+
+  const deleteCard = useCallback((id) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      delete updated[id];
+      return updated;
+    });
+    cardRepository.removeCard(userId, id);
+  }, [cardRepository, userId])
 
   useEffect(() => {
-    authService.onAuthChange(user => {
+    authService.onAuthChange((user) => {
       if (user) {
-        setUserId(user.uid)
+        setUserId(user.uid);
       } else {
-        history.push('/')
+        history.push("/");
       }
-    })
-  })
+    });
+  }, [authService, history]);
 
   useEffect(() => {
     const stopSync = cardRepository.getCards(userId, (data) => {
-      setCards(data || {})
-    })
-    return () => stopSync()
-  }, [cardRepository, userId])
+      setCards(data || {});
+    });
+    return () => stopSync();
+  }, [cardRepository, userId]);
 
   return (
     <section className={styles.maker}>
-      <Header onLogout={onLogout}/>
+      <Header onLogout={onLogout} />
       <section className={styles.container}>
-        <Editor FileInput={FileInput} cards={cards} deleteCard={deleteCard} addOrUpdateCard={addOrUpdateCard}/>
-        <Preview cards={cards}/>
+        <Editor
+          FileInput={FileInput}
+          cards={cards}
+          deleteCard={deleteCard}
+          addOrUpdateCard={addOrUpdateCard}
+        />
+        <Preview cards={cards} />
       </section>
       <Footer />
     </section>
-  )
-}
+  );
+};
 
 export default Maker;

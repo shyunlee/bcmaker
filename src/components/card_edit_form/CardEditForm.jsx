@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 import Button from '../button/Button';
 import styles from './card_edit_form.module.css'
 
-const CardEditForm = ({FileInput, card, deleteCard, updateCard}) => {
+const CardEditForm = memo(({FileInput, card, deleteCard, updateCard}) => {
   const {id, name, company, title, email, phone, message, fileName} = card
 
   const nameRef = useRef()
@@ -26,13 +26,13 @@ const CardEditForm = ({FileInput, card, deleteCard, updateCard}) => {
     })
   }
 
-  const onFileChange = (file) => {
+  const onFileChange = useCallback((file) => {
     updateCard({
       ...card,
       fileName:file.original_filename,
       fileURL:file.url
     })
-  }
+  }, [updateCard])
 
   return (
     <form className={styles.form} onSubmit={onSubmit}>
@@ -53,6 +53,6 @@ const CardEditForm = ({FileInput, card, deleteCard, updateCard}) => {
       <Button name={'Delete'}/>
     </form>
   )
-}
+})
 
 export default CardEditForm;

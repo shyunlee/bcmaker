@@ -4,7 +4,6 @@ import Login from "./components/login/Login";
 import Maker from "./components/maker/Maker";
 
 const App = ({ FileInput, authService, cardRepository }) => {
-
   return (
     <div className={styles.app}>
       <BrowserRouter>

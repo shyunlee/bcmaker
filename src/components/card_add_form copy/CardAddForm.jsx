@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { memo, useCallback, useRef, useState } from 'react';
 import Button from '../button/Button';
 import styles from './card_add_form.module.css'
 
-const CardAddForm = ({FileInput, addCard}) => {
+const CardAddForm = memo(({FileInput, addCard}) => {
   const [file, setFile] = useState({fileName: '', fileURL:null})
   const formRef = useRef()
   const nameRef = useRef()
@@ -32,9 +32,9 @@ const CardAddForm = ({FileInput, addCard}) => {
     setFile({fileName: '', fileURL:null})
   }
 
-  const onFileChange = (file) => {
+  const onFileChange = useCallback((file) => {
     setFile({fileName:file.original_filename, fileURL: file.url})
-  }
+  }, [])
 
   return (
     <form ref={formRef} className={styles.form} onSubmit={onSubmit}>
@@ -55,6 +55,6 @@ const CardAddForm = ({FileInput, addCard}) => {
       <Button name={'Add'}/>
     </form>
   )
-}
+})
 
 export default CardAddForm;
