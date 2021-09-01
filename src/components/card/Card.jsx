@@ -4,11 +4,11 @@ import styles from './card.module.css'
 const DEFAULT_IMG = './images/default_logo.png'
 
 const Card = ({card}) => {
-  const {name, company, title, email, phone, message, fileName, fileURL, theme} = card
+  const {name, company, title, email, phone, message, fileURL, theme} = card
   const profilePhoto = fileURL || DEFAULT_IMG
   return (
     <li className={`${styles.card} ${getTheme(theme)}`}>
-      <img  className={styles.avatar} src={profilePhoto} alt="Profile Photo" />
+      <img  className={styles.avatar} src={profilePhoto} alt="Profile" />
       <div className={styles.info}>
         <p className={styles.name}>{name}</p>
         <p className={styles.company}>{company}</p>

@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '../button/Button';
-import ImageFileInput from '../image_file_input/ImageFileInput';
 import styles from './card_add_form.module.css'
 
-const CardAddForm = ({addCard}) => {
+const CardAddForm = ({FileInput, addCard}) => {
+  const [file, setFile] = useState({fileName: '', fileURL:null})
   const formRef = useRef()
   const nameRef = useRef()
   const companyRef = useRef()
@@ -24,11 +24,16 @@ const CardAddForm = ({addCard}) => {
       phone: phoneRef.current.value || '',
       theme: themeRef.current.value.toLowerCase(),
       message: messageRef.current.value || '',
-      fileName: '',
-      fileURL: null
+      fileName: file.fileName,
+      fileURL: file.fileURL
     }
     formRef.current.reset()
     addCard(newCard)
+    setFile({fileName: '', fileURL:null})
+  }
+
+  const onFileChange = (file) => {
+    setFile({fileName:file.original_filename, fileURL: file.url})
   }
 
   return (
@@ -45,9 +50,9 @@ const CardAddForm = ({addCard}) => {
       </select>
       <textarea  ref={messageRef} className={styles.textarea} type="text" name="message" placeholder="Message"/>
       <div className={styles.image_file_input}>
-        <ImageFileInput />
+        <FileInput fileName={file.fileName} onFileChange={onFileChange}/>
       </div>
-      <Button name={'Add'} />
+      <Button name={'Add'}/>
     </form>
   )
 }

@@ -15,7 +15,7 @@ const cardsData = {
     email: 'sean1@test.com',
     phone: '224-766-9267',
     message: "go for it",
-    fileName: 'profile photo',
+    fileName: '',
     fileURL: null,
     theme: 'colorful'
   },
@@ -27,7 +27,7 @@ const cardsData = {
     email: 'sean1@test.com',
     phone: '224-766-9267',
     message: "go for it",
-    fileName: 'profile photo',
+    fileName: '',
     fileURL: null,
     theme: 'light'
   },
@@ -39,13 +39,13 @@ const cardsData = {
     email: 'sean1@test.com',
     phone: '224-766-9267',
     message: "go for it",
-    fileName: 'profile photo',
+    fileName: '',
     fileURL: null,
     theme: 'dark'
   },
 }
 
-const Maker = ({authService}) => {
+const Maker = ({FileInput, authService}) => {
   const [cards, setCards] = useState(cardsData)
   const history = useHistory()
 
@@ -79,7 +79,7 @@ const Maker = ({authService}) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout}/>
       <section className={styles.container}>
-        <Editor cards={cards} deleteCard={deleteCard} addOrUpdateCard={addOrUpdateCard}/>
+        <Editor FileInput={FileInput} cards={cards} deleteCard={deleteCard} addOrUpdateCard={addOrUpdateCard}/>
         <Preview cards={cards}/>
       </section>
       <Footer />
