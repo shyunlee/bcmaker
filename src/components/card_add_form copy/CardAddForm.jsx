@@ -24,8 +24,8 @@ const CardAddForm = ({FileInput, addCard}) => {
       phone: phoneRef.current.value || '',
       theme: themeRef.current.value.toLowerCase(),
       message: messageRef.current.value || '',
-      fileName: file.fileName,
-      fileURL: file.fileURL
+      fileName: file.fileName || '',
+      fileURL: file.fileURL || null
     }
     formRef.current.reset()
     addCard(newCard)

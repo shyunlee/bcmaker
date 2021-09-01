@@ -4,7 +4,7 @@
 @value makerLightPink: #ffeae8;
 @value makerGrey: #626262;
 @value makerGreen: #385461;
-@value makerPink: pink;
+@value makerPink: #f8acb9;
 @value makerShadow: rgba(217, 217, 217, 1);
 @value makerColorful: linear-gradient(166deg, rgba(237, 193, 211, 1) 0%,rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%);
 @value makerWheat: wheat;
@@ -14,3 +14,4 @@
 @value makerShadow: rgba(217, 217, 217, 1);
 @value makerColorful: linear-gradient(142deg, rgba(240,97,194,0.7077205882352942) 0%, rgba(203,58,111,0.5144432773109244) 45%, rgba(255,246,0,0.5536589635854341) 100%);
 @value makerWheat: wheat;
+@value makerSpinner: #cfcfcf;

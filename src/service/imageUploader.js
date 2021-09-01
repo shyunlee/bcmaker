@@ -10,10 +10,12 @@ class ImageUploader {
     data.append('api_key', process.env.REACT_APP_CLOUDINARY_API_KEY)
     data.append('upload_preset', process.env.REACT_APP_CLOUDINARY_PRESET)
     
-    return fetch(url, {
+    const result = await fetch(url, {
       method: "POST",
       body: data,
-    }).then(result => result.json())
+    })
+
+    return await result.json()
   }  
 
 }
