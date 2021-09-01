@@ -32,7 +32,7 @@ const CardEditForm = memo(({FileInput, card, deleteCard, updateCard}) => {
       fileName:file.original_filename,
       fileURL:file.url
     })
-  }, [updateCard])
+  }, [updateCard, card])
 
   return (
     <form className={styles.form} onSubmit={onSubmit}>
